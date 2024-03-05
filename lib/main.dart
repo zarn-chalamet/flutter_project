@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/favorite_provider.dart';
+import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/login.dart';
 import 'package:flutter_application_1/screens/mybag_provider.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ Future main() async {
   } else {
     await Firebase.initializeApp();
   }
+  // addShoesToFirestore(shoes);
   runApp(
     MultiProvider(
       providers: [

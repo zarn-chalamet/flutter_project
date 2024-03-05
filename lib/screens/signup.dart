@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home.dart';
@@ -88,17 +89,44 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: 40,
                     child: ElevatedButton(
-                        onPressed: () {
-                          FirebaseAuth.instance
-                              .createUserWithEmailAndPassword(
-                                  email: _emailController.text,
-                                  password: _passwordController.text)
-                              .then((value) => {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) => HomeScreen()),
-                                    )
-                                  });
+                        onPressed: () async {
+                          try {
+                            UserCredential userCredential = await FirebaseAuth
+                                .instance
+                                .createUserWithEmailAndPassword(
+                                    email: _emailController.text,
+                                    password: _passwordController.text);
+                            String userId = userCredential.user!.uid;
+                            await FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(userId)
+                                .set({
+                              'name': _nameController.text,
+                              'email': _emailController.text,
+                              // Add other user data as needed
+                            });
+
+                            await FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(userId)
+                                .collection('favorites')
+                                .doc('products')
+                                .set({});
+
+                            await FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(userId)
+                                .collection('orders')
+                                .doc('history')
+                                .set({});
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
+                          } catch (e) {
+                            print('Error creating user: $e');
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.green,

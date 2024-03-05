@@ -16,13 +16,14 @@ class MyBagProvider with ChangeNotifier {
     } else {
       // Add new item to the bag
       _bagItems.add(ShoeItem(
-        name: product.name,
-        urlImage: product.urlImage,
-        price: product.price,
-        brand: product.brand,
-        description: product.description,
-        quantity: 1,
-      ));
+          name: product.name,
+          urlImage: product.urlImage,
+          price: product.price,
+          brand: product.brand,
+          description: product.description,
+          quantity: 1,
+          thumbnailUrls: product.thumbnailUrls,
+          availableSizes: product.availableSizes));
     }
 
     notifyListeners();

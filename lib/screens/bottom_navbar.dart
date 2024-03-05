@@ -3,6 +3,7 @@ import 'package:flutter_application_1/screens/cart.dart';
 import 'package:flutter_application_1/screens/favorite.dart';
 import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/profile.dart';
+import 'package:flutter_application_1/screens/firestoreservice.dart';
 
 class BottomNavBar extends StatefulWidget {
   final int initialIndex;
@@ -32,12 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         _navigateToRoute(context, '/home', HomeScreen());
         break;
       case 1:
-        _navigateToRoute(
-            context,
-            '/favorite',
-            Favorite(
-                favoriteProducts:
-                    shoes.where((product) => product.isFavorite).toList()));
+        _navigateToRoute(context, '/favorite', Favorite());
         break;
       case 2:
         _navigateToRoute(context, '/mybag', MyCart());

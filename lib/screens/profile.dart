@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/custom_scaffold.dart';
 import 'package:flutter_application_1/screens/favorite.dart';
 import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/firestoreservice.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
@@ -81,11 +82,8 @@ class MyProfile extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                  builder: (context) => Favorite(
-                                      favoriteProducts: shoes
-                                          .where(
-                                              (product) => product.isFavorite)
-                                          .toList())),
+                                builder: (context) => Favorite(),
+                              ),
                             );
                           },
                           icon: Icon(Icons.arrow_forward_outlined))

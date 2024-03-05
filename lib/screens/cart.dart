@@ -100,16 +100,35 @@ class MyCart extends StatelessWidget {
                 Text(
                     'Shipping Fee: 50.00 Baht'), // Adjust shipping fee as needed
                 Divider(),
-                Text('Total: \$${(subtotal + 50.0).toStringAsFixed(2)}'),
+                Text('Total: ${(subtotal + 50.0).toStringAsFixed(2)} Baht'),
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              // Add checkout functionality
-            },
-            child: Text('Checkout'),
+          SizedBox(
+            width: 300,
+            height: 40,
+            child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Check Out',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
+                    )
+                  ],
+                )),
           ),
+          SizedBox(
+            height: 20,
+          )
         ],
       ),
     );
